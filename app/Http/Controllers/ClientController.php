@@ -27,7 +27,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        $managers = User::role('manager')->orRole('admin')->get();
+        $managers = User::role(['manager', 'admin'])->get();
 
         return view('clients.create', compact('managers'));
     }
@@ -77,7 +77,7 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        $managers = User::role('manager')->orRole('admin')->get();
+        $managers = User::role(['manager', 'admin'])->get();
 
         return view('clients.edit', compact('client', 'managers'));
     }

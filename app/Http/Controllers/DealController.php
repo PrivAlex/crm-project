@@ -29,7 +29,7 @@ class DealController extends Controller
     public function create()
     {
         $clients  = Client::orderBy('name')->get();
-        $managers = User::role('manager')->orRole('admin')->get();
+        $managers = User::role(['manager', 'admin'])->get();
 
         return view('deals.create', compact('clients', 'managers'));
     }
@@ -82,7 +82,7 @@ class DealController extends Controller
     public function edit(Deal $deal)
     {
         $clients  = Client::orderBy('name')->get();
-        $managers = User::role('manager')->orRole('admin')->get();
+        $managers = User::role(['manager', 'admin'])->get();
 
         return view('deals.edit', compact('deal', 'clients', 'managers'));
     }
